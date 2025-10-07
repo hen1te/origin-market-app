@@ -1,11 +1,17 @@
-// Функция запроса номера телефона через Telegram WebApp
-function requestPhoneNumber() {
-    // Проверяем, запущено ли приложение в Telegram
+// Функция тестового режима
+function testMode() {
+    const testPhone = '+1234567890';
+    localStorage.setItem('phoneNumber', testPhone);
+    showLoadingPage();
+}
+
+// Инициализация Telegram WebApp
+document.addEventListener('DOMContentLoaded', function() {
     if (window.Telegram && window.Telegram.WebApp) {
-        // Запрашиваем номер через нативный диалог Telegram
-        window.Telegram.WebApp.requestContact((contact) => {
-            if (contact && contact.phone_number) {
-                // Сохраняем номер
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
+    }
+});
                 localStorage.setItem('phoneNumber', contact.phone_number);
                 
                 // Показываем страницу загрузки
@@ -123,6 +129,13 @@ document.addEventListener('keydown', function(event) {
         closePrivacyModal();
     }
 });
+
+// Функция тестового режима
+function testMode() {
+    const testPhone = '+1234567890';
+    localStorage.setItem('phoneNumber', testPhone);
+    showLoadingPage();
+}
 
 // Инициализация Telegram WebApp
 document.addEventListener('DOMContentLoaded', function() {
