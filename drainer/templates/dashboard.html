@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origin Market - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles-v2.css') }}?v=4">
+    <script src="https://telegram.org/js/telegram-web-app.js?59"></script>
+    <style>
+        .dashboard-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            min-height: 100vh;
+            justify-content: center;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00F0F9, #0088cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .success-icon::before {
+            content: "✓";
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .dashboard-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-description {
+            font-size: 1rem;
+            color: #cccccc;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .stats-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        .stat-value {
+            color: #00F0F9;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .premium-badge {
+            background: linear-gradient(135deg, #00F0F9, #0088cc);
+            color: #1A1C2F;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+
+        .close-button {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dashboard-container > * {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .dashboard-container > *:nth-child(2) { animation-delay: 0.1s; }
+        .dashboard-container > *:nth-child(3) { animation-delay: 0.2s; }
+        .dashboard-container > *:nth-child(4) { animation-delay: 0.3s; }
+        .dashboard-container > *:nth-child(5) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Иконка успеха -->
+        <div class="success-icon"></div>
+        
+        <!-- Заголовок -->
+        <h1 class="dashboard-title">Добро пожаловать в Origin Market!</h1>
+        
+        <!-- Описание -->
+        <p class="dashboard-description">Ваша авторизация прошла успешно. Теперь вы можете пользоваться всеми возможностями маркетплейса.</p>
+        
+        <!-- Статистика -->
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-label">Статус аккаунта:</span>
+                <span class="premium-badge">PREMIUM</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">NFT в коллекции:</span>
+                <span class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Telegram Stars:</span>
+                <span class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Уровень:</span>
+                <span class="stat-value">Новичок</span>
+            </div>
+        </div>
+        
+        <!-- Кнопка закрытия -->
+        <button class="close-button" onclick="closeWebApp()">
+            Закрыть приложение
+        </button>
+    </div>
+
+    <script>
+        // Инициализация Telegram WebApp
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.ready();
+                window.Telegram.WebApp.expand();
+            }
+        });
+
+        // Функция закрытия WebApp
+        function closeWebApp() {
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.close();
+            } else {
+                // Fallback для тестирования
+                alert('WebApp закрыт');
+            }
+        }
+    </script>
+</body>
+</html>

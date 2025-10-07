@@ -1,0 +1,317 @@
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 350px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+/* Логотип */
+.logo {
+    margin-bottom: 0.1rem;
+    margin-top: -10px;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.pepe-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+}
+
+.pepe-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.4));
+    animation: pepeFloat 3s ease-in-out infinite;
+    margin-bottom: -10px;
+    z-index: 2;
+    position: relative;
+}
+
+.logo-text {
+    font-size: 2.2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #00ffff 0%, #00ff88 25%, #ffff00 50%, #ff00ff 75%, #00ffff 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+    animation: textGlow 2s ease-in-out infinite alternate, gradientShift 4s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes pepeFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-3px) rotate(1deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-3px) rotate(-1deg);
+    }
+}
+
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 20px rgba(0, 255, 255, 0.4), 0 0 30px rgba(255, 215, 0, 0.2);
+    }
+    to {
+        text-shadow: 0 0 40px rgba(0, 255, 255, 0.8), 0 0 60px rgba(255, 215, 0, 0.4);
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
+}
+
+/* Описание */
+.description {
+    margin-bottom: 0px;
+}
+
+.description p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    max-width: 280px;
+    margin: 0 auto;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Кнопки */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 280px;
+    margin-top: 20px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button-icon {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-text {
+    color: white;
+    font-weight: 600;
+}
+
+/* Стили кнопок */
+.telegram-channel {
+    background: linear-gradient(135deg, #0088cc, #00aaff);
+}
+
+.telegram-channel:hover {
+    background: linear-gradient(135deg, #006699, #0088cc);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
+}
+
+.privacy-button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-size: 0.8rem;
+    padding: 10px 16px;
+}
+
+.privacy-button:hover {
+    background: linear-gradient(135deg, #5a6fd8, #6a4190);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.main-button {
+    background: linear-gradient(135deg, #00ffff, #0088cc);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 14px 24px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.main-button:hover {
+    background: linear-gradient(135deg, #00e6e6, #006699);
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    margin: 10% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #00ffff, #0088cc);
+    color: #1a1a2e;
+    padding: 20px;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.close {
+    color: #1a1a2e;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close:hover {
+    color: #ff0000;
+    transform: scale(1.1);
+}
+
+.modal-body {
+    padding: 25px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.modal-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+        gap: 2px;
+    }
+    
+    .logo-text {
+        font-size: 2.2rem;
+    }
+    
+    .pepe-image {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .description p {
+        font-size: 0.85rem;
+        max-width: 260px;
+    }
+    
+    .buttons-container {
+        max-width: 260px;
+        margin-top: 20px;
+    }
+    
+    .button {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .main-button {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+    }
+}
