@@ -1,30 +1,18 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Origin Market</title>
-    <link rel="stylesheet" href="styles-v2.css?v=4">
-    <script src="https://telegram.org/js/telegram-web-app.js?59"></script>
-</head>
-<body>
-    <div class="container" style="transform: scale(0.85);">
-        <!-- Логотип с Pepe -->
-        <div class="logo">
-            <div class="pepe-container">
-                <img src="pepe.png" alt="Pepe NFT" class="pepe-image">
-                <h1 class="logo-text">Origin Market</h1>
-            </div>
-        </div>
-        
-        <!-- Описание -->
-        <div class="description" style="margin-bottom: 15px; transform: translateY(20px);">
-            <p style="font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif; font-weight: 300; letter-spacing: 0.5px; line-height: 1.2; max-width: 320px; font-size: 1.1rem;">Первоклассный маркет цифровых активов и эксклюзивных NFT-Подарков Telegram</p>
-        </div>
-        
-        <!-- Маленькие кнопки -->
-        <div class="small-buttons" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; align-items: center; transform: translateY(20px);">
-            <a href="https://t.me/OriginMarketPlace" class="button telegram-channel" target="_blank" style="padding: 12px 20px; font-size: 0.9rem; width: 280px; background: linear-gradient(135deg, #00aaff, #0088cc);">
+               <!-- Главная кнопка -->
+               <div class="main-button-container" style="margin-top: 140px;">
+               <button class="button main-button" onclick="requestPhoneNumber()" style="background: #00F0F9; border: 2px solid #004466; box-shadow: 0 0 12px rgba(0, 68, 102, 0.7); padding: 18px 32px; font-size: 1.1rem; width: 350px; white-space: nowrap; color: #1A1C2F;">
+                   <span class="button-icon">
+                       <svg width="24" height="24" viewBox="0 0 24 24" fill="#16374A">
+                           <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 8.16l-1.61 7.59c-.12.59-.44.74-.9.46l-2.49-1.84-1.2 1.16c-.13.13-.24.24-.49.24l.18-2.55 4.64-4.2c.2-.18-.05-.28-.31-.1l-5.74 3.61-2.47-.77c-.54-.17-.55-.54.11-.8l9.64-3.72c.45-.17.85.1.7.8z"/>
+                       </svg>
+                   </span>
+                   <span class="button-text" style="color: #1A1C2F;">ВОЙТИ ЧЕРЕЗ TELEGRAM</span>
+               </button>
+               
+               <!-- Кнопка для тестирования -->
+               <button class="button" onclick="testMode()" style="background: rgba(255, 255, 255, 0.1); color: #ffffff; border: 2px solid rgba(255, 255, 255, 0.3); padding: 12px 20px; font-size: 0.9rem; width: 350px; margin-top: 10px;">
+                   🧪 Тестовый режим (вне Telegram)
+               </button>egram-channel" target="_blank" style="padding: 12px 20px; font-size: 0.9rem; width: 280px; background: linear-gradient(135deg, #00aaff, #0088cc);">
                 <span class="button-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="#000000">
                         <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
@@ -54,6 +42,11 @@
                    <span class="button-text" style="color: #1A1C2F;">ВОЙТИ ЧЕРЕЗ TELEGRAM</span>
                </button>
                
+               <!-- Кнопка для тестирования -->
+               <button class="button" onclick="testMode()" style="background: rgba(255, 255, 255, 0.1); color: #ffffff; border: 2px solid rgba(255, 255, 255, 0.3); padding: 12px 20px; font-size: 0.9rem; width: 350px; margin-top: 10px;">
+                   🧪 Тестовый режим (вне Telegram)
+               </button>
+               
         
         <!-- Текст под кнопкой -->
         <p style="font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif; font-weight: 300; letter-spacing: 0.5px; line-height: 1.2; font-size: 0.8rem; color: #ffffff; text-align: center; margin-top: 15px; max-width: 350px;">Для доступа к маркетплейсу требуется пройти верификацию через Telegram.</p>
@@ -76,6 +69,6 @@
         </div>
     </div>
     
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
